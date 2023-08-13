@@ -9,8 +9,8 @@ export const Login = () => {
   const login = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password)
-      console.log('se accedio correctamente')
     } catch (err) {
+      alert('El email o contraseña proporcionados no son correctos')
       console.error(err)
     }
   }
