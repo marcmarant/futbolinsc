@@ -1,0 +1,26 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+  
+
+th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+  
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.ataque_bt {
+    border-radius: 8px 0px 0px 8px;
+}
+
+.defensa_bt {
+    border-radius: 0px 8px 8px 0px;
+}

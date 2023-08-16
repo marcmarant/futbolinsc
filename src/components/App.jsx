@@ -2,8 +2,9 @@ import './App.css'
 import { auth } from '../config/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import { NewMatch } from './NewMatch.jsx'
+import { Scoreboard } from './Scoreboard'
 import { Login } from './Login'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, Link } from 'react-router-dom'
 import { useState, useEffect } from "react"
 
 function App () {
@@ -22,9 +23,20 @@ function App () {
   }, [])
 
   return (
-    <div className="App">
+    <div className='App'>
+      <header>
+        <img src='src/assets/santacruz.png'></img>
+        <h2>Futbolin SC by SAF</h2>
+        <nav>
+          <ul>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/scoreboard'>Scoreboard</Link></li>
+          </ul>
+        </nav>
+      </header>
       <Routes>
         <Route path='/' element={user ? <NewMatch user={user} /> : <Login />} />
+        <Route path='/scoreboard' element={<Scoreboard />} />
       </Routes>
     </div>
   )
