@@ -1,20 +1,36 @@
 table {
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
 }
   
 
 th {
-    border: 1px solid #ddd;
+    background-color: #2b2b2b;
+    color: #ccc;
+    border: 1px solid #ccc;
     padding: 8px;
     text-align: left;
 }
   
 td {
-    border: 1px solid #ddd;
+    color: #fff;
+    border: 1px solid #ccc;
     padding: 8px;
     text-align: left;
+}
+
+.head_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    max-width: 80px;
+    max-height: 50px;
+    padding: 0.8em;
 }
 
 .ataque_bt {
