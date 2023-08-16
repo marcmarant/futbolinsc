@@ -1,9 +1,9 @@
 import './App.css'
-import { auth } from './config/firebase'
+import { auth } from '../config/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
-import { NewMatch } from './components/NewMatch.jsx'
-import { Login } from './components/Login'
-import { Nav } from './components/Nav'
+import { NewMatch } from './NewMatch.jsx'
+import { Login } from './Login'
+import { Route, Routes } from 'react-router-dom'
 import { useState, useEffect } from "react"
 
 function App () {
@@ -22,14 +22,11 @@ function App () {
   }, [])
 
   return (
-    // Estoy pensando en poner ifs para auth leaderboar partido... en vez de un solo ?
-    // No haria falta mainapp seria otro componente
-    // Me da que voy a tener que usar el react route ese
-    <>
-      <div className="App">
-        {user ? <NewMatch user={user} /> : <Login />}
-      </div>
-    </>
+    <div className="App">
+      <Routes>
+        <Route path='/' element={user ? <NewMatch user={user} /> : <Login />} />
+      </Routes>
+    </div>
   )
 }
 
