@@ -1,7 +1,7 @@
 # Firebase files
 .firebase
 .firebaserc
-.firebase.json
+firebase.json
 src/config/firebase.js
 
 # Logs

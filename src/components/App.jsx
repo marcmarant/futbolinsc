@@ -1,4 +1,3 @@
-import './App.css'
 import { auth } from '../config/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import { NewMatch } from './NewMatch.jsx'
@@ -6,6 +5,8 @@ import { Scoreboard } from './Scoreboard'
 import { Login } from './Login'
 import { Route, Routes, Link } from 'react-router-dom'
 import { useState, useEffect } from "react"
+import santacruzlogo  from "../assets/santacruz.png"
+import './App.css'
 
 function App () {
 
@@ -25,7 +26,7 @@ function App () {
   return (
     <div className='App'>
       <header>
-        <img src='src/assets/santacruz.png'></img>
+        <img src={santacruzlogo} alt='Santa Cruz logo'></img>
         <h2>Futbolin SC by SAF</h2>
         <nav>
           <ul>
