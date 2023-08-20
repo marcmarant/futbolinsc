@@ -29,9 +29,9 @@ export const Scoreboard = () => {
 
   const [players, setPlayers] = useState([])
   const [sortBy, setSortBy] = useState('ataque')// Por defecto se ordena por ataque
-  const [buttonColors, setButtonColors] = useState({
-    ataque: pressColor,
-    defensa: unpressColor
+  const [buttonId, setButtonId] = useState({
+    ataque: 'pressBt',
+    defensa: 'unpressBt'
   })
 
   useEffect(() => { 
@@ -50,9 +50,9 @@ export const Scoreboard = () => {
 
   const handleButtonClick = (property) => {
     setSortBy(property);
-    setButtonColors({
-      ataque: property === 'ataque' ? pressColor :unpressColor,
-      defensa: property === 'defensa' ? pressColor : unpressColor
+    setButtonId({
+      ataque: property === 'ataque' ? 'pressBt' : 'unpressBt',
+      defensa: property === 'defensa' ? 'pressBt' : 'unpressBt'
     })
   }
 
@@ -62,13 +62,13 @@ export const Scoreboard = () => {
         <h3>Clasificación ELO</h3>
         <div>
           <button 
-            className='ataque_bt' 
-            style={{ backgroundColor: buttonColors.ataque }} 
+            id={buttonId.ataque}
+            className='ataque_bt'
             onClick={() => handleButtonClick('ataque')}
           >Ataque</button>
           <button
+            id={buttonId.defensa}
             className='defensa_bt'
-            style={{ backgroundColor: buttonColors.defensa }}
             onClick={() => handleButtonClick('defensa')}
           >Defensa</button>
         </div>
