@@ -5,20 +5,25 @@
 }
 
 header {
-  width: 100%;
   height: 100px;
   background-color: #ddd;
-  padding-left: 5%;
+  padding: 5%;
 }
 .title_div {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between
+}
+.login_bt {
+  padding: 0;
 }
 .title {
   margin: 0;
   padding: 0.5em;
 }
+
+/*
 .logo {
   height: 90px;
   padding: 5px;
@@ -31,7 +36,6 @@ header {
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
-
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -40,23 +44,19 @@ header {
     transform: rotate(360deg);
   }
 }
-
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
 }
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
+*/
 
 @media (prefers-color-scheme: dark) {
   header {
     background-color: #555;
+  }
+  .login_bt {
+    background-color: #333;
+    color: #fff;
   }
 }
