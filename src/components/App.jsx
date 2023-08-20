@@ -5,7 +5,6 @@ import { Scoreboard } from './Scoreboard'
 import { Login } from './Login'
 import { Route, Routes, Link } from 'react-router-dom'
 import { useState, useEffect } from "react"
-import santacruzlogo  from "../assets/santacruz.png"
 import './App.css'
 
 function App () {
@@ -26,8 +25,9 @@ function App () {
   return (
     <div className='App'>
       <header>
-        <img src={santacruzlogo} alt='Santa Cruz logo'></img>
-        <h2>Futbolin SC by SAF</h2>
+        <div className='title_div'>
+          <h2 className='title'>Futbolin SC by SAF</h2>
+        </div>
         <nav>
           <ul>
             <li><Link to='/'>Home</Link></li>
@@ -35,10 +35,12 @@ function App () {
           </ul>
         </nav>
       </header>
-      <Routes>
-        <Route path='/' element={user ? <NewMatch user={user} /> : <Login />} />
-        <Route path='/scoreboard' element={<Scoreboard />} />
-      </Routes>
+      <body>
+        <Routes>
+          <Route path='/' element={user ? <NewMatch user={user} /> : <Login />} />
+          <Route path='/scoreboard' element={<Scoreboard />} />
+        </Routes>
+      </body>
     </div>
   )
 }

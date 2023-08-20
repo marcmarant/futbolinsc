@@ -16,13 +16,13 @@ const quicksort = (arr, property) => {// property podra ser ataque o defensa
   let leftArr = [];
   let rightArr = [];
   for (let i = 1; i < arr.length; i++) {
-    if (arr[i][property] > pivot[property]) {
+    if (arr[i][property] >= pivot[property]) {
       leftArr.push(arr[i]);
     } else {
       rightArr.push(arr[i]);
     }
   }
-  return [...quicksort(leftArr), pivot, ...quicksort(rightArr)];
+  return [...quicksort(leftArr, property), pivot, ...quicksort(rightArr, property)];
 }
 
 export const Scoreboard = () => {
@@ -57,7 +57,7 @@ export const Scoreboard = () => {
   }
 
   return (
-    <div>
+    <div className='Scoreboard'>
       <div className='head_div'>
         <h3>Clasificación ELO</h3>
         <div>

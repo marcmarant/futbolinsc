@@ -10,7 +10,7 @@ export const PlayerPick = ( {onSelect} ) => { // onSelect es llamado cuando <sel
         const getPlayers = async () => {
             try {
                 const snapshot = await getDocs(playersCollection)
-                const playersArray = snapshot.docs.map((doc) => doc.id) // doc.data().mote para motes
+                const playersArray = snapshot.docs.map((doc) => doc.data().mote)
                 setPlayers(playersArray)
             }
             catch(error) {

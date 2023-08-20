@@ -1,18 +1,19 @@
+.Scoreboard {
+    padding: 1.5rem;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
     border: 2px solid #555;
 }
-  
-
 th {
     background-color: #777;
     color: #eee;
     border: 2px solid #555;
     padding: 8px;
     text-align: left;
-}
-  
+} 
 td {
     color: #555;
     border: 2px solid #555;
@@ -43,6 +44,7 @@ button {
 #pressBt {
     background-color: #ddd;
     color: #333;
+    cursor: default;
 }
 #unpressBt {
     background-color: #777;
