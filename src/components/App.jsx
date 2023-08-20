@@ -27,6 +27,10 @@ function App () {
       <header>
         <div className='title_div'>
           <h2 className='title'>Futbolin SC by SAF</h2>
+          {user ?
+            <h1>;)</h1> :
+            <Link to='/'><button className='login_bt'>Inicia Sesion</button></Link>
+          }
         </div>
         <nav>
           <ul>
@@ -35,12 +39,12 @@ function App () {
           </ul>
         </nav>
       </header>
-      <body>
+      <section>
         <Routes>
           <Route path='/' element={user ? <NewMatch user={user} /> : <Login />} />
           <Route path='/scoreboard' element={<Scoreboard />} />
         </Routes>
-      </body>
+      </section>
     </div>
   )
 }
