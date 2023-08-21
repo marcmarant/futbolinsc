@@ -2,6 +2,7 @@ import { auth } from "../config/firebase"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { useState } from "react"
 import santacruzlogo  from "../assets/santacruz.png"
+import './Login.css';
 
 export const Login = () => {
   const [email, setEmail] = useState("")
@@ -17,7 +18,7 @@ export const Login = () => {
   }
 
   return (
-    <div>
+    <div className='Login'>
       <img src={santacruzlogo} className='logo' alt='Santa Cruz logo'></img>
       <input
         placeholder="Email..."

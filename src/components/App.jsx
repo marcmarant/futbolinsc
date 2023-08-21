@@ -10,6 +10,7 @@ import './App.css'
 function App () {
 
   const [user, setUser] = useState(null);
+  const [onMenu, setOnMenu] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
@@ -22,23 +23,27 @@ function App () {
     return () => unsubscribe()
   }, [])
 
+  const toggleMenu = () => {
+    setOnMenu(!onMenu)
+  }
+
   return (
     <div className='App'>
       <header>
-        <div className='title_div'>
-          <h2 className='title'>Futbolin SC by SAF</h2>
-          {user ?
-            <h1>;)</h1> :
-            <Link to='/'><button className='login_bt'>Inicia Sesion</button></Link>
-          }
-        </div>
-        <nav>
-          <ul>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/scoreboard'>Scoreboard</Link></li>
-          </ul>
-        </nav>
+        <i className={onMenu ? 'fas fa-times' : 'fas fa-bars'} onClick={toggleMenu}></i>
+        <h2 className='title'>Futbolin SC by SAF</h2>
+        {user ?
+          <h1>;)</h1> :
+          <Link to='/'><button className='login_bt'>Inicia Sesion</button></Link>
+        }
       </header>
+      {onMenu ?
+        <ul className='menu'>
+            <li><Link to='/' onClick={toggleMenu}>Home</Link></li>
+            <li><Link to='/scoreboard' onClick={toggleMenu}>Scoreboard</Link></li>
+        </ul>
+        : null
+      }
       <section>
         <Routes>
           <Route path='/' element={user ? <NewMatch user={user} /> : <Login />} />

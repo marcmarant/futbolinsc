@@ -5,15 +5,20 @@
 }
 
 header {
-  height: 100px;
+  height: 8vh;
   background-color: #ddd;
   padding: 5%;
-}
-.title_div {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between
+  justify-content: space-between;
+  position: relative;
+  z-index: 100;
+}
+i {
+  width: 32px;
+  height: 32px;
+  font-size: 2em;
 }
 .login_bt {
   padding: 0;
@@ -22,34 +27,30 @@ header {
   margin: 0;
   padding: 0.5em;
 }
-
-/*
-.logo {
-  height: 90px;
-  padding: 5px;
-  will-change: filter;
-  transition: filter 300ms;
+.menu {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  opacity: 0.8;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.menu li {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.menu a {
+  color: #fff;
+  font-size: 2em;
+  text-shadow: 1px #000;
 }
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-*/
 
 @media (prefers-color-scheme: dark) {
   header {
