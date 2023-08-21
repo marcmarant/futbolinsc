@@ -31,9 +31,9 @@ function App () {
     <div className='App'>
       <header>
         <i className={onMenu ? 'fas fa-times' : 'fas fa-bars'} onClick={toggleMenu}></i>
-        <h2 className='title'>Futbolin SC by SAF</h2>
+        <h2 className='title'>Futbolin SC</h2>
         {user ?
-          <h1>;)</h1> :
+          <h1>🔜</h1> :
           <Link to='/'><button className='login_bt'>Inicia Sesion</button></Link>
         }
       </header>

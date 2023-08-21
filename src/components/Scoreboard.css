@@ -26,18 +26,21 @@ td {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
 }
 
-button {
+.Scoreboard button {
     max-width: 80px;
     max-height: 50px;
     padding: 0.8em;
 }
 
 .ataque_bt {
+    margin: 0;
     border-radius: 8px 0px 0px 8px;
 }
 .defensa_bt {
+    margin: 0;
     border-radius: 0px 8px 8px 0px;
 }
 
