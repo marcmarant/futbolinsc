@@ -13,23 +13,21 @@ export function algoritmoElo(partido) {
         ...
     */
     
-    // Elo medio pareja vencedora
-    const eloVic = Math.round((partido.defensaVic.data.defensa + partido.delanteroVic.data.ataque)/2);
-    // Elo medio pareja perdedora
-    const eloDerr = Math.round((partido.defensaDerr.data.defensa + partido.delanteroDerr.data.ataque)/2);
+    // Elo medio pareja vencedora/perdedora
+    const eVic = Math.floor((partido.defensaVic.data.defensa + partido.delanteroVic.data.ataque)/2);
+    const eDerr = Math.floor((partido.defensaDerr.data.defensa + partido.delanteroDerr.data.ataque)/2);
+    // Porcentaje de victoria de la pareja vencedora/perdedora
+    const pVic = Math.floor((1+10^((eDerr-eVic)/400))*100)/100
+    const pDerr = Math.floor((1+10^((eDerr-eVic)/400))*100)/100
+    // Elo ganado/perdido por la pareja vencedora/perdedora (facor de multiplicacion 32)
+    const wVic = 32*(1-pVic)
+    const wDerr = 32*(-pDerr)
 
-    const difElo = eloVic - eloDerr;
-
-    if (difElo > 0) { // Gano la pareja con el elo mas alto
-        const eloGanado = difElo;
-    } else if (difElo < 0) { // Gano la pareja con el elo mas bajo
-        const eloGanado = -difElo;
-    }
-
-    partido.defensaDerr.data.defensa -= difElo;
-    partido.delanteroDerr.data.ataque -= difElo;
-    partido.defensaVic.data.defensa += difElo;
-    partido.delanteroVic.data.ataque += difElo;
+    // Se suma el elo ganado/perdido a todos los jugadores en su respectiva posicion
+    partido.delanteroVic.data.ataque += wVic;
+    partido.defensaVic.data.defensa += wVic;
+    partido.delanteroDerr.data.ataque += wDerr;
+    partido.defensaDerr.data.defensa += wDerr;
 
     return partido;
 
