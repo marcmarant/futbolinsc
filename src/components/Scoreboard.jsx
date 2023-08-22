@@ -62,13 +62,11 @@ export const Scoreboard = () => {
         <h3>Clasificación ELO</h3>
         <div>
           <button 
-            id={buttonId.ataque}
-            className='ataque_bt'
+            id={buttonId.ataque} className='ataque_bt'
             onClick={() => handleButtonClick('ataque')}
           >Ataque</button>
           <button
-            id={buttonId.defensa}
-            className='defensa_bt'
+            id={buttonId.defensa} className='defensa_bt'
             onClick={() => handleButtonClick('defensa')}
           >Defensa</button>
         </div>
@@ -78,8 +76,8 @@ export const Scoreboard = () => {
           <tr>
             <th>Pos</th>
             <th>Mote</th>
-            <th>Ataque</th>
-            <th>Defensa</th>
+            {sortBy=='ataque' ? <th>Ataque</th> : <th>Defensa</th>}
+            {sortBy=='defensa' ? <th>Ataque</th> : <th>Defensa</th>}
           </tr>
         </thead>
         <tbody>
@@ -87,8 +85,8 @@ export const Scoreboard = () => {
             <tr key={player.mote}>
               <td>{index+1}º</td>
               <td><b>{player.mote}</b></td>
-              <td>{player.ataque}</td>
-              <td>{player.defensa}</td>
+              {sortBy=='ataque' ? <td>{player.ataque}</td> : <td>{player.defensa}</td>}
+              {sortBy=='defensa' ? <td>{player.ataque}</td> : <td>{player.defensa}</td>}
             </tr>
           ))}
         </tbody>
