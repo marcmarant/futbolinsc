@@ -28,7 +28,7 @@ export const PlayerPick = ( {onSelect} ) => { // onSelect es llamado cuando <sel
     return (
         <div>
             <select onChange={(e) => onSelect(e.target.options[e.target.selectedIndex].getAttribute('data-key'))}>
-                <option disabled selected value="">Seleccione un jugador</option> // selected no es optimo
+                <option disabled selected value="">Seleccione un jugador</option>
                 {players.map((player) => (
                     <option key={player.mote} data-key={player.id}>
                         {player.mote}
