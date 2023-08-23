@@ -5,14 +5,14 @@ import { guardarPartido } from "../scripts/guardarPartido.js"
 
 export const NewMatch = ({ user }) => {
 
-  const [defensaVic, setDefensaVic] = useState("")
-  const [delanteroVic, setDelanteroVic] = useState("")
-  const [defensaDerr, setDefensaDerr] = useState("")
-  const [delanteroDerr, setDelanteroDerr] = useState("")
+  const [defensaVic, setDefensaVic] = useState('')
+  const [delanteroVic, setDelanteroVic] = useState('')
+  const [defensaDerr, setDefensaDerr] = useState('')
+  const [delanteroDerr, setDelanteroDerr] = useState('')
 
   const crearPartido = () => {
-    if (defensaVic == "" || delanteroVic == "" || defensaDerr == "" || delanteroDerr == "")
-      alert("Debes seleccionar los 4 jugadores necesarios para poder conformar una partida.")
+    if (defensaVic == '' || delanteroVic == '' || defensaDerr == '' || delanteroDerr == '')
+      alert('Debes seleccionar los 4 jugadores necesarios para poder conformar una partida.')
     else {
       const partido = {
         defensaVic,
@@ -20,7 +20,14 @@ export const NewMatch = ({ user }) => {
         defensaDerr,
         delanteroDerr
       }
-      guardarPartido(partido)
+      try {
+        guardarPartido(partido)
+        alert('Partido guardado correctamente')
+      }catch(e) {
+        alert('Error al guardar el partido: '+e)
+      }
+
+
     }
   }
 
