@@ -40,7 +40,7 @@ function App () {
         <h2 className='title'>Futbolin SC</h2>
         {user ?
           <Logout /> :
-          <Link to='/'><button className='login_bt' onClick='closeMenu'>Inicia Sesion</button></Link>
+          <Link to='/'><button className='login_bt' onClick={closeMenu}>Inicia Sesion</button></Link>
         }
       </header>
       {onMenu ?
