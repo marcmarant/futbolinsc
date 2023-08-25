@@ -13,14 +13,12 @@ export function algoritmoElo(partido) {
     // Elo ganado/perdido por la pareja vencedora/perdedora (factor de multiplicacion 3, factor de crecimiento 6)
     const wVic = Math.ceil(Math.pow(3*(pDerr), 6));
     const wDerr = -wVic;
-
-    console.log(`Victoria ++${wVic}, Derrota -${wDerr}`)
-
     // Se suma el elo ganado/perdido a todos los jugadores en su respectiva posicion
-    /*partido.delanteroVic.data.ataque += wVic;
+    partido.delanteroVic.data.ataque += wVic;
     partido.defensaVic.data.defensa += wVic;
     partido.delanteroDerr.data.ataque += wDerr;
-    partido.defensaDerr.data.defensa += wDerr;*/
+    partido.defensaDerr.data.defensa += wDerr;
+    partido.eloObtenido = wVic;
 
     return partido;
 

@@ -1,5 +1,5 @@
 import { getProb } from './algoritmoElo';
-import { getPlayer } from '../config/firebase';
+import { getPlayerRef } from '../config/firebase';
 import { getDoc } from 'firebase/firestore';
 
 export function getData(partido) {
@@ -19,7 +19,7 @@ export function getData(partido) {
 
     for (const player in partido) {
         if (partido[player] != '') { 
-            const playerRef = getPlayer(partido[player]);
+            const playerRef = getPlayerRef(partido[player]);
             const promise = getDoc(playerRef)
             .then((docSnapshot) => {
                 if (docSnapshot.exists) {

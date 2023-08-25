@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { guardarPartido } from "../scripts/guardarPartido.js"
 import { getData } from "../scripts/previewPartido.js"
 
-export const NewMatch = ({ user }) => {
+export const NewMatch = () => {
 
   const [defensaVic, setDefensaVic] = useState('')
   const [delanteroVic, setDelanteroVic] = useState('')
