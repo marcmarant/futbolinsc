@@ -29,7 +29,7 @@ export const Login = () => {
         type="password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={login}> Login </button>
+      <button onClick={login}>Login</button>
     </div>
   )
 }

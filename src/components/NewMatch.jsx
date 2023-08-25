@@ -1,4 +1,3 @@
-import { Logout } from './Logout'
 import { PlayerPick } from './PlayerPick'
 import { useState, useEffect } from "react"
 import { guardarPartido } from "../scripts/guardarPartido.js"
@@ -20,12 +19,7 @@ export const NewMatch = ({ user }) => {
     if (defensaVic == '' || delanteroVic == '' || defensaDerr == '' || delanteroDerr == '')
       alert('Debes seleccionar los 4 jugadores necesarios para poder conformar una partida.')
     else {
-      const partido = {
-        defensaVic,
-        delanteroVic,
-        defensaDerr,
-        delanteroDerr
-      }
+      const partido = {defensaVic, delanteroVic, defensaDerr, delanteroDerr}
       try {
         guardarPartido(partido)
         alert('Partido guardado correctamente')
@@ -38,12 +32,7 @@ export const NewMatch = ({ user }) => {
   useEffect(() => {
     const previewPartido = async () => {
       if ((defensaVic != '' && delanteroVic != '') || (defensaDerr != '' && delanteroDerr != '')) {
-        const prePartido = {
-          defensaVic,
-          delanteroVic,
-          defensaDerr,
-          delanteroDerr
-        }
+        const prePartido = {defensaVic, delanteroVic, defensaDerr, delanteroDerr}
         const preData = await getData(prePartido)
         setEloMedioVic(preData.eloVic)
         setEloMedioDerr(preData.eloDerr)
@@ -56,14 +45,13 @@ export const NewMatch = ({ user }) => {
 
   return (
     <div>
-      <h2>Bienvenido, {user.uid}</h2>
-      <Logout/>
+      <h2>Nuevo Partido</h2>
       <div>
         <h3>Ganadores:</h3>
         <label>Defensa</label>
-          <PlayerPick onSelect={(nombre) => setDefensaVic(nombre)} />
+          <PlayerPick placeholder='Seleccione un jugador' onSelect={(nombre) => setDefensaVic(nombre)} />
         <label>Delantero</label>
-          <PlayerPick onSelect={(nombre) => setDelanteroVic(nombre)} />
+          <PlayerPick placeholder='Seleccione un jugador' onSelect={(nombre) => setDelanteroVic(nombre)} />
         {eloMedioVic != null ?
           <div>
             <label>ELO Medio:</label>
@@ -82,9 +70,9 @@ export const NewMatch = ({ user }) => {
       <div>
         <h3>Perdedores:</h3>
         <label>Defensa</label>
-          <PlayerPick onSelect={(nombre) => setDefensaDerr(nombre)} />
+          <PlayerPick placeholder='Seleccione un jugador' onSelect={(nombre) => setDefensaDerr(nombre)} />
         <label>Delantero</label>
-          <PlayerPick onSelect={(nombre) => setDelanteroDerr(nombre)} />
+          <PlayerPick placeholder='Seleccione un jugador' onSelect={(nombre) => setDelanteroDerr(nombre)} />
         {eloMedioDerr != null ?
           <div>
             <label>ELO Medio:</label>

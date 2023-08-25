@@ -2,7 +2,7 @@ import { playersCollection } from '../config/firebase'
 import { getDocs } from 'firebase/firestore'
 import { useEffect, useState } from 'react';
 
-export const PlayerPick = ( {onSelect} ) => { // onSelect es llamado cuando <select> cambia de valor
+export const PlayerPick = ( {placeholder, onSelect} ) => { // onSelect es llamado cuando <select> cambia de valor
 
     const [players, setPlayers] = useState([]);
 
@@ -28,7 +28,7 @@ export const PlayerPick = ( {onSelect} ) => { // onSelect es llamado cuando <sel
     return (
         <div>
             <select onChange={(e) => onSelect(e.target.options[e.target.selectedIndex].getAttribute('data-key'))}>
-                <option disabled selected value="">Seleccione un jugador</option>
+                <option disabled selected value="">{placeholder}</option>
                 {players.map((player) => (
                     <option key={player.mote} data-key={player.id}>
                         {player.mote}
