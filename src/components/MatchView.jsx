@@ -1,15 +1,19 @@
-import { matchesCollection } from '../config/firebase'
-import { getDocs } from 'firebase/firestore'
+import { matchesCollection, getPlayerRef } from '../config/firebase'
+import { query, limit, getDocs } from 'firebase/firestore'
 import { PlayerPick } from './PlayerPick'
 import { useState } from 'react';
+import './MatchView.css'
+
 
 export const MatchView = () => {
 
+  const maxMatches = 10 // Número de partidos mostrados
   const [matches, setMatches] = useState([])
 
   const getMatches = async () => {
     try {
-      const snapshot = await getDocs(matchesCollection)
+      const q = query(matchesCollection, limit(maxMatches));
+      const snapshot = await getDocs(q)
       const matchesArray = snapshot.docs.map((doc) => doc.data())
       setMatches(matchesArray)
     }
@@ -21,11 +25,11 @@ export const MatchView = () => {
 
   const getDate = (match) => {
     const date = new Date(match.fecha)
-    return [date.toLocaleDateString('es-ES'), date.toLocaleTimeString('es-ES')]// formato: es, zona horaria: ES
+    return [date.toLocaleDateString('es-ES'), date.toLocaleTimeString('es-ES')] // formato: es, zona horaria: ES
   }
 
   return (
-    <div className='MatchView'>
+    <div>
       <div className='head_div'>
         <h3>Ultimos partidos</h3>
         <div>
@@ -33,22 +37,25 @@ export const MatchView = () => {
           <PlayerPick placeholder='Filtrar'/>
         </div>
       </div>
-      {matches.map((match) => (
-        <div>
-          <div>
-          {getDate(match).map((dateElem) => (
-            <h6>{dateElem}</h6>
-          ))}
+      <div className='match_container'>
+        {matches.map((match) => (
+          <div className='match'>
+            <div className='match_date'>
+            {getDate(match).map((dateElem) => (
+              <h5>{dateElem}</h5>
+            ))}
+            </div>
+            <div className='match_players'>
+              <h4>DF: {match.defensaVic}</h4>
+              <h4>DF: {match.defensaDerr}</h4>
+              <h4>DL: {match.delanteroVic}</h4>
+              <h4>DL: {match.delanteroDerr}</h4>
+              <h2 className='elo_vic'>+{match.eloObtenido}</h2>
+              <h2 className='elo_derr'>-{match.eloObtenido}</h2>
+            </div>
           </div>
-          <div>
-            <h5>Defensa Vic: {match.defensaVic}</h5>
-            <h5>Delantero Vic: {match.delanteroVic}</h5>
-            <h5>Defensa Derr: {match.defensaDerr}</h5>
-            <h5>Delantero Derr: {match.delanteroDerr}</h5>
-          </div>
-          <h4>{match.eloObtenido}</h4>
-        </div>
-      ))}
+        ))}
+      </div>
       {/* TODO: Desplegar componentes <Match /> */}
     </div>
   )

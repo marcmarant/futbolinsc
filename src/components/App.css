@@ -1,7 +1,16 @@
-#root {
+.App {
   width: 100%;
   margin: 0 auto;
   text-align: center;
+}
+
+section {
+  padding: 5%;
+  width: 90%;
+  max-width: 800px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 header {
