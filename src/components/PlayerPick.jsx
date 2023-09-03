@@ -1,10 +1,10 @@
 import { playersCollection } from '../config/firebase'
 import { getDocs } from 'firebase/firestore'
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
 export const PlayerPick = ( {placeholder, onSelect} ) => { // onSelect es llamado cuando <select> cambia de valor
 
-    const [players, setPlayers] = useState([]);
+    const [players, setPlayers] = useState([])
 
     useEffect(() => { 
         const getPlayers = async () => {
@@ -23,7 +23,7 @@ export const PlayerPick = ( {placeholder, onSelect} ) => { // onSelect es llamad
             }
         }
         getPlayers()
-    }, []);
+    }, [])
 
     return (
         <div>
@@ -36,5 +36,5 @@ export const PlayerPick = ( {placeholder, onSelect} ) => { // onSelect es llamad
                 ))}
             </select>
         </div>
-  );
-};
+  )
+}
