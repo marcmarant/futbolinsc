@@ -5,30 +5,37 @@
     color: #fff;
     font-size: 1.1em;
 }
-
 .match {
     background: red;
     background-color: #555;
     border-radius: 5%;
-    padding: 0 1.3rem 0 1.3rem;
+    /* padding: 0 1.3rem 0 1.3rem; */
     margin: 20px;
-    max-width: 300px;
+    width: 270px;
 }
-
 .match_date {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     font-size: 1.2em;
+    border-bottom: 2px solid #fff;
+    height: 50px;
+    padding: 0 10px 0 10px;
 }
-
+.match_author {
+    margin: 0;
+    color: #ccc;
+}
 .match_players {
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: center;
     overflow: hidden;
 }
-
+.match_players h2, h4 {
+    margin: 10px;
+}
 .elo_vic {
     text-shadow: green 1px 1px 10px;
 }

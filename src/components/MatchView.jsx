@@ -27,6 +27,11 @@ export const MatchView = () => {
     getMatches()
   }, [])
 
+  const getDate = (match) => {
+    const date = new Date(match.fecha)
+    return [date.toLocaleDateString('es-ES'), date.toLocaleTimeString('es-ES')]// formato: es, zona horaria: ES
+  }
+
   const transformToMote = (id) => {
     const words = id.split('_')[0].split('_')
     const mote = words.map((word) =>
@@ -54,8 +59,11 @@ export const MatchView = () => {
             <div className='match' key={index}>
               {/* Transform and display match attributes */}
               <div className='match_date'>
-                {/* Render date here */}
+                {getDate(match).map((dateElem) => (
+                  <h5>{dateElem}</h5>
+                ))}
               </div>
+              <h5 className='match_author'>Subido por Plato</h5>
               <div className='match_players'>
                 <h4>DEF {transformToMote(match.defensaVic)}</h4>
                 <h4>DEF {transformToMote(match.defensaDerr)}</h4>
@@ -68,7 +76,6 @@ export const MatchView = () => {
           ))
         )}
       </div>
-      {/* TODO: Render Match components */}
     </div>
   )
 }
