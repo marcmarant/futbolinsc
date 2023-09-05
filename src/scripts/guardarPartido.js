@@ -1,8 +1,21 @@
 import { algoritmoElo } from './algoritmoElo';
-import { getPlayerRef, newMatchRef } from '../config/firebase';
+import { getPlayerRef, newMatchRef, getCuentaRef } from '../config/firebase';
 import { getDoc, updateDoc, setDoc } from 'firebase/firestore';
 
-export function guardarPartido(partido) {
+export function guardarPartido(partido, authorUid) {
+
+    const getAuthorId = async () => {
+        const cuentaRef = getCuentaRef(authorUid);
+        try {
+            const snapShot = await getDoc(cuentaRef);
+            const data = snapShot.data();
+            const authorId = data.elo_id;
+            return authorId;
+        }
+        catch(error) {
+            console.error(error);
+        }
+    }
 
     /* Estructura de partido:
 
@@ -64,6 +77,7 @@ export function guardarPartido(partido) {
                 defensaDerr: partido.defensaDerr.id,
                 delanteroDerr: partido.delanteroDerr.id,
                 eloObtenido: partido.eloObtenido,
+                autor: await getAuthorId(),
                 fecha: Date.now()
             });
         }

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { guardarPartido } from "../scripts/guardarPartido.js"
 import { getData } from "../scripts/previewPartido.js"
 
-export const NewMatch = () => {
+export const NewMatch = ({ authorUid }) => {
 
   const [defensaVic, setDefensaVic] = useState('')
   const [delanteroVic, setDelanteroVic] = useState('')
@@ -21,7 +21,7 @@ export const NewMatch = () => {
     else {
       const partido = {defensaVic, delanteroVic, defensaDerr, delanteroDerr}
       try {
-        guardarPartido(partido)
+        guardarPartido(partido, authorUid)
         alert('Partido guardado correctamente')
       }catch(e) {
         alert('Error al guardar el partido: '+e)

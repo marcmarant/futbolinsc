@@ -57,13 +57,12 @@ export const MatchView = () => {
         : (
           matches.map((match, index) => (
             <div className='match' key={index}>
-              {/* Transform and display match attributes */}
               <div className='match_date'>
                 {getDate(match).map((dateElem) => (
                   <h5>{dateElem}</h5>
                 ))}
               </div>
-              <h5 className='match_author'>Subido por Plato</h5>
+              <h5 className='match_author'>Subido por {transformToMote(match.autor)}</h5>
               <div className='match_players'>
                 <h4>DEF {transformToMote(match.defensaVic)}</h4>
                 <h4>DEF {transformToMote(match.defensaDerr)}</h4>

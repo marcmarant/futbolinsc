@@ -53,7 +53,7 @@ function App () {
       }
       <section>
         <Routes>
-          <Route path='/' element={user ? <NewMatch user={user} /> : <Login />} />
+          <Route path='/' element={user ? <NewMatch authorUid={user.uid} /> : <Login />} />
           <Route path='/scoreboard' element={<Scoreboard />} />
           <Route path='/matchs' element={<MatchView />} />
         </Routes>
