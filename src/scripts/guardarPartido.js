@@ -71,14 +71,17 @@ export function guardarPartido(partido, authorUid) {
             }
         }
         const saveMatch = async () => {
-            await setDoc(newMatchRef(), {
+            const fechaActual = Date.now() // Date.now() devuelve el unix time actual en tipo number
+            const fechaInversa = 10000000000000-fechaActual
+            /* En fechaInversa se obtendra una fecha anterior cuanto mas posterior sea fechaActual, siendo 0 el 20/11/2286 a las 18:46:40 GMT+1 */
+            await setDoc(newMatchRef(fechaInversa.toString()), { // Es necesario que el parametro de newMatchRef sea de tipo string
                 defensaVic: partido.defensaVic.id,
                 delanteroVic: partido.delanteroVic.id,
                 defensaDerr: partido.defensaDerr.id,
                 delanteroDerr: partido.delanteroDerr.id,
                 eloObtenido: partido.eloObtenido,
                 autor: await getAuthorId(),
-                fecha: Date.now()
+                fecha: fechaActual // fecha debe ser de tipo number
             });
         }
         saveMatch();
