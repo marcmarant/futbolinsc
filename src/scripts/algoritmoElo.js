@@ -21,5 +21,4 @@ export function algoritmoElo(partido) {
     partido.eloObtenido = wVic;
 
     return partido;
-
-}
+} 

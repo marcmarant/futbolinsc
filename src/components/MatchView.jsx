@@ -1,31 +1,45 @@
 import React, { useEffect, useState } from 'react'
 import { matchesCollection } from '../config/firebase'
-import { query, limit, getDocs } from 'firebase/firestore'
+import { query, limit, where, getDocs, FieldPath, documentId } from 'firebase/firestore'
 import { PlayerPick } from './PlayerPick'
 import './MatchView.css'
 
 export const MatchView = () => {
 
-  const maxMatches = 10 // Number of matches to show
+  const maxMatches = 20 // Number of matches to show
   const [matches, setMatches] = useState([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(false)
+  const [filtro, setFiltro] = useState(null)
 
   useEffect(() => {
     const getMatches = async () => {
       try {
-        const q = query(matchesCollection, limit(maxMatches))
-        const snapshot = await getDocs(q)
-        const matchesArray = snapshot.docs.map((doc) => doc.data())
+        setLoading(true)
+        let matchesArray = []
+        if (filtro) {
+          const campos = ["defensaDerr", "defensaVic", "delanteroDerr", "delanteroVic"];
+          for (const campo of campos) {
+            const q = query(matchesCollection, where(campo, "==", filtro), limit(maxMatches - matchesArray.length))
+            const snapshot = await getDocs(q)
+            const filteredDocs = snapshot.docs.map((doc) => doc.data())
+            matchesArray = [...matchesArray, ...filteredDocs];
+          }
+        } else {
+          const q = query(matchesCollection, limit(maxMatches))
+          const snapshot = await getDocs(q)
+          matchesArray = snapshot.docs.map((doc) => doc.data())
+        }
         setMatches(matchesArray)
         setLoading(false)
       } catch (error) {
-        setError(error)
+        setError(true)
         setLoading(false)
+        console.log(error)
       }
     }
     getMatches()
-  }, [])
+  }, [filtro])
 
   const getDate = (match) => {
     const date = new Date(match.fecha)
@@ -45,14 +59,13 @@ export const MatchView = () => {
       <div className='head_div'>
         <h3>Ultimos partidos</h3>
         <div>
-          {/* TODO: <option> for sorting */}
-          <PlayerPick placeholder='Filtrar' />
+          <PlayerPick placeholder='Filtrar' onSelect={(nombre) => setFiltro(nombre)} />
         </div>
       </div>
       <div className='match_container'>
         {loading ?
           <p>Cargando...</p>
-        : error ?
+        : error ? 
           <p>Error al cargar los partidos</p>
         : (
           matches.map((match, index) => (
