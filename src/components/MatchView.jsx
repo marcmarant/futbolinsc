@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { matchesCollection } from '../config/firebase'
-import { query, limit, where, getDocs, FieldPath, documentId } from 'firebase/firestore'
+import { query, limit, where, getDocs } from 'firebase/firestore'
 import { PlayerPick } from './PlayerPick'
 import './MatchView.css'
 
