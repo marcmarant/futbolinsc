@@ -11,5 +11,5 @@ export const Logout = () => {
     }
   }
 
-  return (<button onClick={logout}> Logout </button>)
+  return (<button style={{background: '#444'}} onClick={logout}> Logout </button>)
 }

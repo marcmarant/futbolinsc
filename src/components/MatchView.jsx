@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { matchesCollection } from '../config/firebase'
-import { query, limit, where, getDocs } from 'firebase/firestore'
+import { query, limit, where, or, getDocs } from 'firebase/firestore'
 import { PlayerPick } from './PlayerPick'
 import './MatchView.css'
 
@@ -16,20 +16,18 @@ export const MatchView = () => {
     const getMatches = async () => {
       try {
         setLoading(true)
-        let matchesArray = []
+        let q = null
         if (filtro) {
-          const campos = ["defensaDerr", "defensaVic", "delanteroDerr", "delanteroVic"];
-          for (const campo of campos) {
-            const q = query(matchesCollection, where(campo, "==", filtro), limit(maxMatches - matchesArray.length))
-            const snapshot = await getDocs(q)
-            const filteredDocs = snapshot.docs.map((doc) => doc.data())
-            matchesArray = [...matchesArray, ...filteredDocs];
-          }
-        } else {
-          const q = query(matchesCollection, limit(maxMatches))
-          const snapshot = await getDocs(q)
-          matchesArray = snapshot.docs.map((doc) => doc.data())
-        }
+          q = query(matchesCollection, or( 
+            where("defensaDerr", "==", filtro),
+            where("defensaVic", "==", filtro),
+            where("delanteroDerr", "==", filtro),
+            where("delanteroVic", "==", filtro),
+          ), limit(maxMatches))
+        } else
+          q = query(matchesCollection, limit(maxMatches))
+        const snapshot = await getDocs(q)
+        const matchesArray = snapshot.docs.map((doc) => doc.data())
         setMatches(matchesArray)
         setLoading(false)
       } catch (error) {
