@@ -14,6 +14,7 @@ export const NewMatch = ({ authorUid }) => {
   const [eloMedioDerr, setEloMedioDerr] = useState(null)
   const [probVic, setProbVic] = useState(null)
   const [probDerr, setProbDerr] = useState(null)
+  const [eloWon, setEloWon] = useState(null)
 
   const crearPartido = () => {
     if (defensaVic == '' || delanteroVic == '' || defensaDerr == '' || delanteroDerr == '')
@@ -38,6 +39,7 @@ export const NewMatch = ({ authorUid }) => {
         setEloMedioDerr(preData.eloDerr)
         setProbVic(preData.probVic)
         setProbDerr(preData.probDerr)
+        setEloWon(preData.eloWon)
       }
     }
     previewPartido()
@@ -88,6 +90,13 @@ export const NewMatch = ({ authorUid }) => {
           : null
         }
       </div>
+      {eloWon != null ?
+        <div>
+          <label>Elo a ganar/perder:</label>
+          <h4>{eloWon}</h4>
+        </div> 
+        : null
+      }
       <button onClick={crearPartido} >Confirmar</button>
     </div>
   )

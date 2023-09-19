@@ -1,4 +1,4 @@
-import { getProb } from './algoritmoElo';
+import { getEloWon, getProb } from './algoritmoElo';
 import { getPlayerRef } from '../config/firebase';
 import { getDoc } from 'firebase/firestore';
 
@@ -34,13 +34,13 @@ export function getData(partido) {
             });
             promises.push(promise);
         } else {
-            undefinedPlayers.push(player)
+            undefinedPlayers.push(player);
         }
     }
 
     return Promise.all(promises)
     .then(() => {
-        let eloVic, eloDerr, probVic, probDerr = null
+        let eloVic, eloDerr, probVic, probDerr, eloWon = null
         if (!undefinedPlayers.includes('defensaVic') && !undefinedPlayers.includes('delanteroVic')) {
             eloVic = Math.floor((partido.defensaVic.defensa + partido.delanteroVic.ataque)/2);
         }
@@ -49,11 +49,11 @@ export function getData(partido) {
         }
         if (undefinedPlayers.length === 0) {
             let prob = getProb(eloVic, eloDerr);
-            probVic = prob.pVic
-            probDerr = prob.pDerr
+            probVic = prob.pVic;
+            probDerr = prob.pDerr;
+            eloWon = getEloWon(probDerr);
         }
-        return {eloVic, eloDerr, probVic, probDerr
-        }
+        return {eloVic, eloDerr, probVic, probDerr, eloWon};
     })
     .catch((error) => {
         console.error(error);
