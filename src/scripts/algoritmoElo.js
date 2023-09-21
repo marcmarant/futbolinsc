@@ -23,6 +23,11 @@ export function algoritmoElo(partido) {
     partido.delanteroDerr.data.ataque += wDerr;
     partido.defensaDerr.data.defensa += wDerr;
     partido.eloObtenido = wVic;
-
+    // Se suman la derrota/victoria obtenida a cada jugador
+    partido.delanteroVic.data.partidos_ganados ++;
+    partido.defensaVic.data.partidos_ganados ++;
+    partido.delanteroDerr.data.partidos_perdidos ++;
+    partido.defensaDerr.data.partidos_perdidos ++;
+        
     return partido;
 } 
