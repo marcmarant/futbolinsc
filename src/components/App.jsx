@@ -1,7 +1,7 @@
 import { auth } from '../config/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import { Login } from './Login'
-import { Logout } from './Logout'
+import { Profile } from './Profile'
 import { NewMatch } from './NewMatch'
 import { Scoreboard } from './Scoreboard'
 import { MatchView } from './MatchView'
@@ -39,7 +39,7 @@ function App () {
         <i className={onMenu ? 'fas fa-times' : 'fas fa-bars'} onClick={toggleMenu}></i>
         <h2 className='title'>Futbolin SC</h2>
         {user ?
-          <Logout /> :
+          <Link to='/profile'><i className='fas fa-user'></i></Link> :
           <Link to='/'><button className='login_bt' onClick={closeMenu}>Inicia Sesion</button></Link>
         }
       </header>
@@ -56,6 +56,7 @@ function App () {
           <Route path='/' element={user ? <NewMatch authorUid={user.uid} /> : <Login />} />
           <Route path='/scoreboard' element={<Scoreboard />} />
           <Route path='/matchs' element={<MatchView />} />
+          <Route path='/profile' element={user ? <Profile userUid={user.uid} /> : null} />
         </Routes>
       </section>
     </div>

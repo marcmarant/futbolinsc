@@ -6,7 +6,7 @@ import './MatchView.css'
 
 export const MatchView = () => {
 
-  const maxMatches = 20 // Number of matches to show
+  const maxMatches = 100 // Number of matches to show
   const [matches, setMatches] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)

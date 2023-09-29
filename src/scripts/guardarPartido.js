@@ -63,7 +63,8 @@ export function guardarPartido(partido, authorUid) {
 
     return Promise.all(promises)
     .then(() => {
-        partido = algoritmoElo(partido); // Se modifican los datos 
+        partido = algoritmoElo(partido); // Se modifican los datos
+        console.log(partido)
         const updatePromises = [];
         for (const player in partido) {
             if (player != 'eloObtenido') {
@@ -73,7 +74,7 @@ export function guardarPartido(partido, authorUid) {
         const saveMatch = async () => {
             const fechaActual = Date.now() // Date.now() devuelve el unix time actual en tipo number
             const fechaInversa = 10000000000000-fechaActual
-            /* En fechaInversa se obtendra una fecha anterior cuanto mas posterior sea fechaActual, siendo 0 el 20/11/2286 a las 18:46:40 GMT+1 */
+            // En fechaInversa se obtendra una fecha anterior cuanto mas posterior sea fechaActual, siendo 0 el 20/11/2286 a las 18:46:40 GMT+1
             await setDoc(newMatchRef(fechaInversa.toString()), { // Es necesario que el parametro de newMatchRef sea de tipo string
                 defensaVic: partido.defensaVic.id,
                 delanteroVic: partido.delanteroVic.id,
