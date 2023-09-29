@@ -7,6 +7,7 @@ import './Scoreboard.css';
 export const Profile = ({ userUid }) => {
 
     const [data, setData] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => { 
         const getData = async () => {
@@ -18,6 +19,7 @@ export const Profile = ({ userUid }) => {
                 const playerRef = getPlayerRef(userId)
                 const playerSnapShot = await getDoc(playerRef)
                 setData(playerSnapShot.data());
+                setLoading(false)
             }
             catch(error) {
                 console.error('Error al obtener los datos de su cuenta', error)
@@ -28,13 +30,17 @@ export const Profile = ({ userUid }) => {
 
     return (
         <div className='Profile'>
-            <h4>Ataque: {data.ataque}</h4>
-            <h4>Defensa: {data.defensa}</h4>
-            <h4>Record de Ataque: {data.ataque_record}</h4>
-            <h4>Record de Defensa: {data.defensa_record}</h4>
-            <h4>Partidos Jugados: {data.partidos_ganados + data.partidos_perdidos}</h4>
-            <h4>Partidos Ganados: {data.partidos_ganados}</h4>
-            <h4>Partidos Perdidos: {data.partidos_perdidos}</h4>
+            { loading ? null :
+            <div>
+                <h4>Ataque: {data.ataque}</h4>
+                <h4>Defensa: {data.defensa}</h4>
+                <h4>Record de Ataque: {data.ataque_record}</h4>
+                <h4>Record de Defensa: {data.defensa_record}</h4>
+                <h4>Partidos Jugados: {data.partidos_ganados + data.partidos_perdidos}</h4>
+                <h4>Partidos Ganados: {data.partidos_ganados}</h4>
+                <h4>Partidos Perdidos: {data.partidos_perdidos}</h4>
+            </div>
+            }
             <Logout />
         </div>
     )
